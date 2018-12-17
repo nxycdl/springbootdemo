@@ -1,0 +1,3 @@
+com\ycfd\App.class
+com\ycfd\api\entry\User.class
+com\ycfd\api\service\UserService.class

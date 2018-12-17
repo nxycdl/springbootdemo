@@ -1,0 +1,49 @@
+server:
+  port: 8100
+spring:
+  application:
+    name: orderimp
+  boot:
+      admin:
+        client:
+          url: http://192.168.200.135:7000
+  zipkin:
+    base-url: http://192.168.200.135:9411
+  sleuth:
+    sampler:
+      probability: 1
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+       defaultZone: http://192.168.200.85:6801/eureka/,http://192.168.200.135:6802/eureka/,http://192.168.200.136:6803/eureka/
+  instance:
+    prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+     env:
+       enabled: true
+feign:
+  hystrix:
+    enabled: true
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+zuul:
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
